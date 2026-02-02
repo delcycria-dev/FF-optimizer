@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+    <title>FF Aim Optimizer A16</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #0b0b0b; color: #fff; font-family: sans-serif; }
+        canvas { display: block; width: 100vw; height: 100vh; touch-action: none; }
+        #ui { 
+            position: absolute; top: 10px; left: 10px; 
+            background: rgba(0,0,0,0.9); padding: 15px; 
+            border-radius: 12px; color: #ff4500; font-size: 12px;
+            z-index: 100; border: 1px solid #ff4500;
+        }
+        .controls { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        input[type=range] { width: 160px; accent-color: #ff4500; }
+        summary { cursor: pointer; font-weight: bold; color: #ff4500; list-style: none; }
+        .debug-info { margin-top: 10px; font-family: monospace; color: #00ffcc; font-size: 10px; }
+    </style>
+</head>
+<body>
+    <div id="ui">
+        <details open>
+            <summary>🎯 AJUSTES FREE FIRE (A16)</summary>
+            <div class="controls">
+                <label>Sensi Geral: <span id="val-sens">2.2</span></label>
+                <input type="range" id="sens" min="0.5" max="5.0" step="0.1" value="2.2">
+                
+                <label>Estabilizador (Capa): <span id="val-smooth">0.08</span></label>
+                <input type="range" id="smooth" min="0.01" max="0.3" step="0.01" value="0.08">
+                
+                <label>Força No Recoil: <span id="val-recoil">1.5</span></label>
+                <input type="range" id="recoil" min="0" max="4.0" step="0.1" value="1.5">
+                
+                <label>Filtro de Ruído: <span id="val-dead">2</span></label>
+                <input type="range" id="dead" min="0" max="10" step="1" value="2">
+            </div>
+        </details>
+        <div class="debug-info">G99-Engine: <span id="debug">Ativo</span></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="enginebundle.js"></script>
+    <script src="engine.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+    </script>
+</body>
+</html>
